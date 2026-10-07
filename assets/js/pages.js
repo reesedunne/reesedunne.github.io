@@ -473,12 +473,12 @@
     var cv = SITE.person.links.cv;
     var body =
       '<p class="section-intro">' +
-      (cv ? "Download a PDF of my CV, or view a printable web version." : "A printable web version of my CV is available below.") +
+      (cv ? "Download a PDF of my resume, or view a printable web version of my CV." : "A printable web version of my CV is available below.") +
       "</p>" +
       '<div class="cv-actions">' +
       UI.Button({
         href: cv,
-        label: "Download CV (PDF)",
+        label: "Download Resume / CV (PDF)",
         primary: true,
         newTab: true,
         hint: "Placeholder: put your PDF in files/ and set links.cv in content.js",
