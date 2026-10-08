@@ -11,15 +11,12 @@
   var page = document.body.getAttribute("data-page");
 
   var NAV = [
-    ["about", "About"],
+    ["story", "Story"],
     ["research", "Research"],
-    ["publications", "Publications"],
-    ["presentations", "Presentations"],
-    ["skills", "Skills"],
-    ["honors", "Honors"],
-    ["featured", "Featured"],
-    ["leadership", "Leadership"],
-    ["cv", "CV"],
+    ["publications", "Work"],
+    ["honors", "Recognition"],
+    ["leadership", "Beyond the lab"],
+    ["cv.html", "CV"],
   ];
 
   var STYLES = { editorial: "Editorial", minimal: "Minimal", sidebar: "Sidebar" };
@@ -61,6 +58,7 @@
     var el = document.getElementById("site-header");
     if (!el) return;
     var navHref = function (id) {
+      if (/\.html$/.test(id)) return id;
       return page === "home" ? "#" + id : "index.html#" + id;
     };
     var items = NAV.map(function (n) {

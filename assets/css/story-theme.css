@@ -1,0 +1,51 @@
+/* =====================================================================
+   "Story" theme for the project and CV pages (loaded after style.css).
+   Re-colors the shared layout so it matches the dark homepage.
+   ===================================================================== */
+:root {
+  --bg: #0e0f13;
+  --surface: #15171d;
+  --text: #ece7df;
+  --text-2: #b4aea5;
+  --text-3: #8a857d;
+  --rule: rgba(236, 231, 223, 0.12);
+  --rule-strong: rgba(236, 231, 223, 0.24);
+  --tag-bg: #1d2027;
+  --accent: #f0b98f;
+  --accent-hover: #ffd3b0;
+  --font-sans: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+  --font-serif: "Instrument Serif", "Iowan Old Style", Georgia, serif;
+  --font-heading: var(--font-serif);
+  color-scheme: dark;
+}
+
+.site-header {
+  background: rgba(14, 15, 19, 0.85);
+}
+
+.brand,
+.detail-title {
+  font-family: var(--font-serif);
+  font-weight: 400;
+}
+
+.btn--primary,
+.skip-link {
+  color: #0e0f13;
+}
+
+.figure-button {
+  background: #fff;
+}
+
+@media print {
+  :root {
+    --bg: #fff;
+    --surface: #fff;
+    --text: #000;
+    --text-2: #222;
+    --text-3: #444;
+    --rule: #ddd;
+    --accent: #000;
+  }
+}
