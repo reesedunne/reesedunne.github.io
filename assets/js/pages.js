@@ -133,7 +133,7 @@
     var actions = [
       UI.Button({
         href: l.cv,
-        label: "CV / Resume",
+        label: "Resume",
         primary: true,
         newTab: true,
         hint: "Placeholder: put your PDF in files/ and set links.cv in content.js",
@@ -512,7 +512,7 @@
       '<div class="cv-actions">' +
       UI.Button({
         href: cv,
-        label: "Download Resume / CV (PDF)",
+        label: "Download Resume (PDF)",
         primary: true,
         newTab: true,
         hint: "Placeholder: put your PDF in files/ and set links.cv in content.js",
