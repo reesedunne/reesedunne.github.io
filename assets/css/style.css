@@ -700,6 +700,7 @@ a:hover .ext-icon {
   margin-bottom: 0.6rem;
 }
 
+.project-meta .sep,
 .project-sub .sep {
   color: var(--text-3);
   font-weight: 700;
