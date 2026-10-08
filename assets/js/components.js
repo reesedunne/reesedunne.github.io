@@ -269,7 +269,7 @@
       "</span>" +
       (pr.type ? '<span class="pres-type">' + esc(pr.type) + "</span>" : "") +
       "</p>";
-    var confLine = [pr.conferenceFull, pr.location].filter(Boolean).map(esc).join(", ");
+    var confLine = [pr.conferenceFull, pr.location].filter(Boolean).map(esc).join(" " + sep() + " ");
     var full = confLine ? '<p class="pres-conf-full">' + confLine + "</p>" : "";
 
     var title = pr.title

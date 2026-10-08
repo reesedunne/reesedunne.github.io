@@ -20,6 +20,10 @@ window.SITE = {
 
     // Your name as it appears in author lists; it is shown in bold.
     highlightAuthor: ["Reese A. Dunne", "Reese Dunne", "Dunne RA"],
+
+    // Relevant Coursework (About): how many course groups to show before the "Show more courses"
+    // button. Groups appear in the order listed under coursework below. Set to null to show all.
+    courseworkPreviewGroups: 2,
   },
 
   /* ---------------------------------------------------------------
@@ -201,6 +205,7 @@ window.SITE = {
     },
     {
       title: "University & state honors",
+      collapsed: true, // hidden behind a "Show" button on the homepage; delete this line to always show
       items: [
         {
           name: "Dean’s Award, Shackouls Honors College",
@@ -428,7 +433,7 @@ window.SITE = {
       institution: "Department of Mechanical Engineering, Stanford University",
       dates: "Jan. 2026 – Present",
       description:
-        "Initiated and currently lead rheological testing of fresh human brain tissue across compression, tension, shear, stress-relaxation, and cyclic loading to quantify nonlinear, time-dependent behavior and improve constitutive models of brain mechanics.",
+        "Initiated and currently lead rheological testing of fresh human brain tissue to quantify nonlinear, time-dependent behavior and improve constitutive models of brain mechanics.",
       stats: [],
       highlights: [],
       contributions: [
@@ -462,7 +467,7 @@ window.SITE = {
       institution: "Department of Mechanical Engineering, Stanford University",
       dates: "Sept. 2023 – July 2025",
       description:
-        "Studied the mechanical behavior of plant-based and animal meat using rheology, mechanical testing, and constitutive neural networks.",
+        "Combined rheology, mechanical testing, and constitutive neural networks to compare plant-based and animal meats and establish quantitative targets for improving plant-based meat texture.",
       stats: [
         { value: "8", label: "meat products" },
         { value: "10", label: "quantified mechanical properties" },
@@ -802,7 +807,7 @@ window.SITE = {
       title: "Longitudinal Imaging of Iron and Myelin Maturation in Contact-Sport Athletes Using Source-Separated QSM",
       authors:
         "Reese A. Dunne, Marios Georgiadis, Mahta Karimpoor, Pascal Spincemaille, Alexey Dimov, Brian Mills, Maged Goubran, Hossein M. Taghavi, Nicole Mouchawar, Sohrab Sami, Max Wintermark, Gerald Grant, David Camarillo, Yi Wang, Michael Zeineh",
-      location: null,
+      location: "Cape Town, South Africa",
       url: null, // not yet published
       linkLabel: "ISMRM 2026 Oral Presentation",
       poster: null,
@@ -817,7 +822,7 @@ window.SITE = {
       title: "Source-Separated Quantitative Susceptibility Mapping of Olfactory and Medial Temporal Regions Across Alzheimer’s Disease",
       authors:
         "Reese Dunne, Hossein Moein Taghavi, Mahta Karimpoor, Eric K. van Staalduinen, Christina B. Young, Marios Georgiadis, America Romero, Alexandra Trelle, Hillary Vossler, Maya Yutsis, Pascal Spincemaille, Yi Wang, Alexey Dimov, Guido A. Davidzon, Greg Zaharchuk, Kathleen Poston, Anthony D. Wagner, Victor W. Henderson, Elizabeth Mormino, Michael Zeineh",
-      location: null,
+      location: "London, United Kingdom",
       url: null, // not yet published
       linkLabel: null,
       poster: null,
@@ -831,7 +836,7 @@ window.SITE = {
       title: "Ultra-high Resolution in vivo 7T MRI Detects Hippocampal Subfield Iron in Mild Cognitive Impairment and Alzheimer’s Disease",
       authors:
         "Reese Dunne, Hossein Moein Taghavi, Phil DiGiacomo, Julian Maclaren, Meghan Bell, Mackenzie Carlson, Elizabeth Mormino, Victor Henderson, Pascal Spincemaille, Hangwei Zhuang, Yi Wang, Brian Rutt, Marios Georgiadis, Michael Zeineh",
-      location: null,
+      location: "Honolulu, Hawaii, USA",
       url: "https://doi.org/10.58530/2025/1785",
       linkLabel: "Abstract (ISMRM archive)",
       poster: null,
@@ -845,7 +850,7 @@ window.SITE = {
       title: "Detecting Hippocampal Subfield Iron in Alzheimer’s Disease using Ultra-high Resolution in vivo 7T MRI",
       authors:
         "Reese Dunne, Hossein Moein Taghavi, Phil DiGiacomo, Julian Maclaren, Meghan Bell, Mackenzie Carlson, Elizabeth Mormino, Victor Henderson, Pascal Spincemaille, Hangwei Zhuang, Yi Wang, Brian Rutt, Marios Georgiadis, Michael Zeineh",
-      location: null,
+      location: "Toronto, Canada",
       url: "https://doi.org/10.1002/alz70856_106116",
       linkLabel: "Published abstract",
       poster: null,
@@ -871,7 +876,7 @@ window.SITE = {
       type: "Digital poster",
       title: "A Diffusion Tensor Imaging approach to investigate the effects of exercise on quadricep muscle fiber lengths",
       authors: "Reese A. Dunne, Garry E. Gold, Valentina Mazzoli",
-      location: null,
+      location: "London, United Kingdom",
       url: "https://doi.org/10.58530/2022/1022",
       linkLabel: "Abstract (ISMRM archive)",
       poster: null,
@@ -885,7 +890,7 @@ window.SITE = {
       title:
         "Investigating the effects of compressional and elastic photoacoustic waves to predict transcranial photoacoustic image quality for guidance of minimally invasive neurosurgeries",
       authors: "Graham MT, Dunne RA, Bell MAL",
-      location: null,
+      location: "San Francisco, California, USA",
       url: "https://doi.org/10.1117/12.2579076",
       linkLabel: "Proceedings paper",
       poster: null,
@@ -1098,18 +1103,18 @@ window.SITE = {
             "Elected sole student representative to the national board, serving as the liaison between national leadership and chapter presidents nationwide.",
         },
         {
-          title: "President, Lambda Sigma Honor Society",
-          organization: "Mississippi State University",
-          dates: "2019–2021",
-          description:
-            "Led the chapter as president (2019–2020), setting meeting agendas, organizing community-service projects, and representing the chapter at the national conference; remained on the executive board as junior advisor (2020–2021).",
-        },
-        {
           title: "President, Tau Beta Pi Engineering Honor Society",
           organization: "Mississippi State University",
           dates: "2021–2023",
           description:
             "Led the chapter as president (2022–2023), coordinating executive meetings and biannual initiation ceremonies, and represented Mississippi State as a voting delegate at the 2022 national convention. Previously social coordinator (2021–2022).",
+        },
+        {
+          title: "President, Lambda Sigma Honor Society",
+          organization: "Mississippi State University",
+          dates: "2019–2021",
+          description:
+            "Led the chapter as president (2019–2020), setting meeting agendas, organizing community-service projects, and representing the chapter at the national conference; remained on the executive board as junior advisor (2020–2021).",
         },
         {
           title: "Social Coordinator, Radiological Sciences Laboratory Trainee Council",

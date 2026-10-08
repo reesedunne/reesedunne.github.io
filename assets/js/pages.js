@@ -138,6 +138,7 @@
         newTab: true,
         hint: "Placeholder: put your PDF in files/ and set links.cv in content.js",
       }),
+      '<a class="btn" href="cv.html">Printable CV</a>',
       UI.Button({ href: l.scholar, label: "Google Scholar", hint: "Placeholder: add links.scholar in content.js" }),
       UI.Button({ href: l.linkedin, label: "LinkedIn" }),
       UI.Button({ href: "mailto:" + p.email, label: "Email" }),
@@ -206,26 +207,43 @@
     return esc(name) + (prog ? ' <span class="skill-level">in progress</span>' : "");
   }
 
+  function courseGroup(g) {
+    return (
+      '<div class="honor-group"><p class="honor-title">' +
+      esc(g.title) +
+      '</p><ul class="honor-list course-list">' +
+      g.items
+        .map(function (i) {
+          return "<li>" + courseName(i) + "</li>";
+        })
+        .join("") +
+      "</ul></div>"
+    );
+  }
+
   function coursework() {
     var groups = SITE.coursework || [];
     if (!groups.length) return "";
+    var head = '<h3 class="sub-heading sub-heading--spaced">Relevant Coursework</h3>';
+    var n = SITE.settings.courseworkPreviewGroups;
+    if (n == null || n >= groups.length) return head + groups.map(courseGroup).join("");
+    var rest = groups.slice(n);
+    var more = rest.reduce(function (sum, g) {
+      return sum + g.items.length;
+    }, 0);
+    var showLabel = "Show " + more + " more course" + (more === 1 ? "" : "s");
     return (
-      '<h3 class="sub-heading sub-heading--spaced">Relevant Coursework</h3>' +
-      groups
-        .map(function (g) {
-          return (
-            '<div class="honor-group"><p class="honor-title">' +
-            esc(g.title) +
-            '</p><ul class="honor-list course-list">' +
-            g.items
-              .map(function (i) {
-                return "<li>" + courseName(i) + "</li>";
-              })
-              .join("") +
-            "</ul></div>"
-          );
-        })
-        .join("")
+      head +
+      groups.slice(0, n).map(courseGroup).join("") +
+      '<div class="course-rest" id="course-rest" hidden>' +
+      rest.map(courseGroup).join("") +
+      "</div>" +
+      '<button type="button" class="honor-toggle more-toggle" aria-expanded="false" aria-controls="course-rest"' +
+      ' data-show="' +
+      esc(showLabel) +
+      '" data-hide="Show fewer courses">' +
+      esc(showLabel) +
+      "</button>"
     );
   }
 
@@ -336,39 +354,55 @@
     if (!groups.length) return;
     var body = groups
       .map(function (g) {
-        return (
-          '<div class="project-group"><h3 class="sub-heading">' +
-          esc(g.title) +
-          "</h3>" +
-          g.items
-            .map(function (h) {
-              return (
-                '<article class="lead-item honor-item">' +
-                '<p class="project-meta"><span class="dates">' +
-                esc(h.date) +
-                "</span>" +
-                (h.org ? " " + UI.sep() + " " + esc(h.org) : "") +
-                "</p>" +
-                '<h4 class="lead-title">' +
-                esc(h.name) +
-                "</h4>" +
-                (h.description ? '<p class="lead-desc">' + esc(h.description) + "</p>" : "") +
-                (h.article
-                  ? '<p class="project-links">' + UI.ExternalLink({ href: h.article, label: "Read article", className: "more-link" }) + "</p>"
-                  : "") +
-                (h.project && UI.projectById(h.project)
-                  ? '<p class="project-links"><a class="more-link" href="' +
-                    UI.projectUrl(h.project) +
-                    '">Related research<span class="visually-hidden">: ' +
-                    esc(UI.projectById(h.project).title) +
-                    '</span> <span class="arrow" aria-hidden="true">→</span></a></p>'
-                  : "") +
-                "</article>"
+        var rows = g.items
+          .map(function (h) {
+            var links = [];
+            if (h.article) links.push(UI.ExternalLink({ href: h.article, label: "Read article", className: "more-link" }));
+            if (h.project && UI.projectById(h.project)) {
+              links.push(
+                '<a class="more-link" href="' +
+                  UI.projectUrl(h.project) +
+                  '">Related research<span class="visually-hidden">: ' +
+                  esc(UI.projectById(h.project).title) +
+                  '</span> <span class="arrow" aria-hidden="true">→</span></a>'
               );
-            })
-            .join("") +
-          "</div>"
-        );
+            }
+            return (
+              '<article class="honor-row">' +
+              '<p class="honor-date">' +
+              esc(h.date) +
+              "</p>" +
+              '<div class="honor-body">' +
+              '<h4 class="honor-name">' +
+              esc(h.name) +
+              (h.org ? ' <span class="honor-org">' + UI.sep() + " " + esc(h.org) + "</span>" : "") +
+              "</h4>" +
+              (h.description ? '<p class="honor-desc">' + esc(h.description) + "</p>" : "") +
+              (links.length ? '<p class="project-links honor-links">' + links.join("") + "</p>" : "") +
+              "</div></article>"
+            );
+          })
+          .join("");
+        if (g.collapsed) {
+          return (
+            '<details class="project-group honor-more">' +
+            '<summary class="honor-toggle">' +
+            '<span class="when-closed">Show ' +
+            esc(g.title.charAt(0).toLowerCase() + g.title.slice(1)) +
+            " (" +
+            g.items.length +
+            ")</span>" +
+            '<span class="when-open">Hide ' +
+            esc(g.title.charAt(0).toLowerCase() + g.title.slice(1)) +
+            "</span></summary>" +
+            '<h3 class="sub-heading">' +
+            esc(g.title) +
+            "</h3>" +
+            rows +
+            "</details>"
+          );
+        }
+        return '<div class="project-group"><h3 class="sub-heading">' + esc(g.title) + "</h3>" + rows + "</div>";
       })
       .join("");
     fillSection("honors", "Honors", body);
@@ -437,20 +471,20 @@
 
   function leadItem(item) {
     return (
-      '<article class="lead-item">' +
-      '<p class="project-meta"><span class="dates">' +
+      '<article class="honor-row">' +
+      '<p class="honor-date">' +
       esc(item.dates) +
-      "</span>" +
-      (item.organization ? " " + UI.sep() + " " + esc(item.organization) : "") +
       "</p>" +
-      '<h4 class="lead-title">' +
+      '<div class="honor-body">' +
+      '<h4 class="honor-name">' +
       esc(item.title) +
+      (item.organization ? ' <span class="honor-org">' + UI.sep() + " " + esc(item.organization) + "</span>" : "") +
       "</h4>" +
-      (item.description ? '<p class="lead-desc">' + esc(item.description) + "</p>" : "") +
+      (item.description ? '<p class="honor-desc">' + esc(item.description) + "</p>" : "") +
       (item.article
-        ? '<p class="project-links">' + UI.ExternalLink({ href: item.article, label: "Read article", className: "more-link" }) + "</p>"
+        ? '<p class="project-links honor-links">' + UI.ExternalLink({ href: item.article, label: "Read article", className: "more-link" }) + "</p>"
         : "") +
-      "</article>"
+      "</div></article>"
     );
   }
 
@@ -1009,6 +1043,20 @@
     });
   }
 
+  // "Show more / Show fewer" buttons that reveal a hidden block (e.g. coursework)
+  function initMoreToggles() {
+    document.addEventListener("click", function (e) {
+      var btn = e.target.closest(".more-toggle");
+      if (!btn) return;
+      var target = document.getElementById(btn.getAttribute("aria-controls"));
+      if (!target) return;
+      var open = btn.getAttribute("aria-expanded") !== "true";
+      target.hidden = !open;
+      btn.setAttribute("aria-expanded", open ? "true" : "false");
+      btn.textContent = open ? btn.getAttribute("data-hide") : btn.getAttribute("data-show");
+    });
+  }
+
   function initCopyButtons() {
     document.addEventListener("click", function (e) {
       var btn = e.target.closest && e.target.closest(".copy-btn");
@@ -1153,6 +1201,7 @@
   initActiveNav();
   initReveal();
   initCopyButtons();
+  initMoreToggles();
   initFigures();
   initStylePreview();
 

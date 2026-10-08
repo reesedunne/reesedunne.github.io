@@ -637,7 +637,7 @@ a:hover .ext-icon {
 }
 
 .project {
-  padding: 2.1rem 0;
+  padding: 1.6rem 0;
   border-top: 1px solid var(--rule);
 }
 
@@ -697,7 +697,7 @@ a:hover .ext-icon {
 .project-sub {
   font-size: 0.9rem;
   color: var(--text-2);
-  margin-bottom: 0.85rem;
+  margin-bottom: 0.6rem;
 }
 
 .project-desc {
@@ -729,6 +729,19 @@ a:hover .ext-icon {
   gap: 0.5rem 1.25rem;
   margin: 1.1rem 0 0;
   font-size: 0.9rem;
+}
+
+/* Slightly tighter spacing inside homepage research cards */
+.project .stats {
+  margin-top: 1.1rem;
+}
+
+.project .tags {
+  margin-top: 0.9rem;
+}
+
+.project .project-links {
+  margin-top: 0.85rem;
 }
 
 .more-link {
@@ -884,7 +897,7 @@ a:hover .ext-icon {
   font-family: var(--font-heading);
   font-size: 1.05rem;
   line-height: 1.4;
-  margin-top: 0.35rem !important;
+  margin-top: 0.3rem !important;
   max-width: 46rem;
 }
 
@@ -905,6 +918,12 @@ a:hover .ext-icon {
   margin-top: 0.2rem !important;
 }
 
+.pres-conf-full .sep {
+  color: var(--text-3);
+  font-weight: 700;
+  margin: 0 0.25rem;
+}
+
 [data-style="minimal"] .pres-title {
   font-size: 0.98rem;
   font-weight: 600;
@@ -917,6 +936,15 @@ a:hover .ext-icon {
   padding-left: 0.75rem;
   border-left: 2px solid var(--rule-strong);
   max-width: 40rem;
+}
+
+/* Slightly tighter spacing for presentations */
+.pres {
+  padding: 1.1rem 0;
+}
+
+.pres-actions {
+  margin-top: 0.5rem !important;
 }
 
 .pres--ph {
@@ -1097,6 +1125,117 @@ a:hover .ext-icon {
   max-width: var(--measure);
   color: var(--text-2);
   margin: 0.6rem 0 0;
+}
+
+/* ---------------------------------------------------------------------
+   Honors (compact rows: date column + details)
+   --------------------------------------------------------------------- */
+.honor-row {
+  display: grid;
+  grid-template-columns: 6rem 1fr;
+  gap: 0 1.5rem;
+  padding: 0.95rem 0;
+  border-top: 1px solid var(--rule);
+}
+
+.project-group .sub-heading + .honor-row {
+  border-top: 0;
+  padding-top: 0.1rem;
+}
+
+.honor-date {
+  margin: 0;
+  padding-top: 0.15rem;
+  font-size: 0.8125rem;
+  color: var(--accent);
+  font-weight: 500;
+  font-variant-numeric: tabular-nums;
+}
+
+.honor-name {
+  font-size: 1.05rem;
+  line-height: 1.35;
+  margin: 0;
+}
+
+.honor-org {
+  font-family: var(--font-sans);
+  font-size: 0.8125rem;
+  font-weight: 400;
+  color: var(--text-3);
+}
+
+.honor-desc {
+  max-width: var(--measure);
+  color: var(--text-2);
+  font-size: 0.95rem;
+  margin: 0.25rem 0 0;
+}
+
+.honor-links {
+  margin-top: 0.35rem;
+  font-size: 0.85rem;
+}
+
+.honor-toggle {
+  display: inline-block;
+  cursor: pointer;
+  list-style: none;
+  font-family: var(--font-sans);
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--accent);
+  padding: 0.45rem 0.9rem;
+  border: 1px solid var(--rule-strong);
+  border-radius: var(--radius);
+}
+
+.honor-toggle::-webkit-details-marker {
+  display: none;
+}
+
+.honor-toggle:hover {
+  color: var(--accent-hover);
+  border-color: var(--accent);
+}
+
+.honor-more .when-open,
+.honor-more[open] .when-closed {
+  display: none;
+}
+
+.honor-more[open] .when-open {
+  display: inline;
+}
+
+.honor-more[open] .honor-toggle {
+  margin-bottom: 1.75rem;
+}
+
+/* Coursework: even gap after the first group, button below the list */
+.about-aside .sub-heading + .honor-group {
+  margin-bottom: 0;
+}
+
+.course-rest .honor-group:first-child {
+  margin-top: 1.1rem;
+}
+
+.more-toggle {
+  display: block;
+  margin-top: 1.25rem;
+  background: none;
+}
+
+@media (max-width: 560px) {
+  .honor-row {
+    grid-template-columns: 1fr;
+  }
+
+  .honor-date {
+    padding-top: 0;
+    margin-bottom: 0.2rem;
+  }
 }
 
 /* ---------------------------------------------------------------------
