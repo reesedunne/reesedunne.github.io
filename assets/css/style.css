@@ -153,8 +153,9 @@ main:focus {
 }
 
 .sep {
-  color: var(--rule-strong);
-  margin: 0 0.1rem;
+  color: var(--text-3);
+  font-weight: 700;
+  margin: 0 0.25rem;
 }
 
 .ext-icon {
@@ -700,14 +701,6 @@ a:hover .ext-icon {
   margin-bottom: 0.6rem;
 }
 
-.project-meta .sep,
-.project-sub .sep,
-.honor-org .sep {
-  color: var(--text-3);
-  font-weight: 700;
-  margin: 0 0.25rem;
-}
-
 .project-desc {
   max-width: var(--measure);
   margin-bottom: 0;
@@ -924,12 +917,6 @@ a:hover .ext-icon {
 
 .pres-conf-full {
   margin-top: 0.2rem !important;
-}
-
-.pres-conf-full .sep {
-  color: var(--text-3);
-  font-weight: 700;
-  margin: 0 0.25rem;
 }
 
 [data-style="minimal"] .pres-title {
