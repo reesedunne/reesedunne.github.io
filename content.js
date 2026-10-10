@@ -908,6 +908,7 @@ window.SITE = {
       linkLabel: "Proceedings paper",
       poster: null,
       note: "Presented by first author M. T. Graham.",
+      role: "Co-author", // shown next to the type on the homepage
       project: "photoacoustic",
     },
   ],

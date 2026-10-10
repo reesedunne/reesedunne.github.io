@@ -132,7 +132,7 @@
   };
   var HOME = { city: "Stanford", lat: 37.43, lon: -122.17 };
 
-  var ROMAN = ["I", "II", "III", "IV", "V", "VI", "VII", "VIII"];
+  var ROMAN = ["I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX", "X"];
 
   function $(id) {
     return document.getElementById(id);
@@ -185,6 +185,7 @@
       ["publications", "Work"],
       ["honors", "Recognition"],
       ["leadership", "Beyond the lab"],
+      ["featured", "Press"],
     ];
     $("s-header").innerHTML =
       '<div class="s-wrap s-header-inner">' +
@@ -559,6 +560,7 @@
             "</p>" +
             '<p class="s-talks-type">' +
             esc(p.type) +
+            (p.role ? " · " + esc(p.role) : "") +
             "</p>" +
             "</li>"
           );
@@ -849,19 +851,24 @@
         .map(function (g) {
           return g.items
             .map(function (h) {
-              return (
-                '<article class="s-honor reveal">' +
+              var inner =
                 '<p class="s-honor-date">' +
                 esc(h.date) +
                 "</p>" +
                 '<h3 class="s-honor-name">' +
-                (h.article ? link(h.article, esc(h.name)) : esc(h.name)) +
+                esc(h.name) +
                 "</h3>" +
                 '<p class="s-honor-desc">' +
                 esc(h.description) +
-                "</p>" +
-                "</article>"
-              );
+                "</p>";
+              // Only honors with a news article are links (whole card), with a visible cue
+              return h.article
+                ? link(
+                    h.article,
+                    inner + '<span class="s-honor-go">Read article <span aria-hidden="true">↗</span></span>',
+                    "s-honor s-honor--link reveal"
+                  )
+                : '<article class="s-honor reveal">' + inner + "</article>";
             })
             .join("");
         })
@@ -870,15 +877,34 @@
       minor
         .map(function (g) {
           return (
-            '<div class="s-honors-minor reveal"><h3>' +
+            '<details class="s-honors-more reveal">' +
+            "<summary><span>" +
             esc(g.title) +
-            "</h3><ul>" +
+            '</span><span class="s-honors-count">' +
+            g.items.length +
+            '</span><span class="s-honors-chev" aria-hidden="true"></span></summary>' +
+            '<ul class="s-honors-rows">' +
             g.items
               .map(function (h) {
-                return "<li>" + esc(h.name) + " <span>" + esc(h.date) + "</span></li>";
+                return (
+                  "<li>" +
+                  '<span class="s-honors-rows-date">' +
+                  esc(h.date) +
+                  "</span>" +
+                  "<div>" +
+                  '<p class="s-honors-rows-name">' +
+                  (h.article ? link(h.article, esc(h.name) + ' <span aria-hidden="true">↗</span>') : esc(h.name)) +
+                  ' <span class="s-honors-rows-org">' +
+                  esc(h.org) +
+                  "</span></p>" +
+                  '<p class="s-honors-rows-desc">' +
+                  esc(h.description) +
+                  "</p>" +
+                  "</div></li>"
+                );
               })
               .join("") +
-            "</ul></div>"
+            "</ul></details>"
           );
         })
         .join("") +
@@ -894,9 +920,9 @@
       "</div>" +
       '<div class="s-beyond-grid">' +
       '<figure class="s-beyond-photo reveal"><img src="images/featured/track-web.jpg" alt="Reese Dunne competing in track and field for Mississippi State" loading="lazy" />' +
-      "<figcaption>NCAA Division I track &amp; field, Mississippi State, 2018–2023</figcaption></figure>" +
+      "<figcaption>NCAA Division I Track &amp; Field / Cross Country<br />Mississippi State University, 2018–2023</figcaption></figure>" +
       '<div class="s-beyond-copy">' +
-      '<p class="s-statement reveal">The same discipline, <em>off the clock.</em></p>' +
+      '<p class="s-statement reveal">The same discipline,<br /><em class="s-nowrap">off the clock.</em></p>' +
       groups
         .map(function (g) {
           return (
@@ -922,6 +948,46 @@
         })
         .join("") +
       "</div>" +
+      "</div>" +
+      "</div>";
+  }
+
+  function renderFeatured() {
+    var items = SITE.featured || [];
+    $("featured").innerHTML =
+      '<div class="s-wrap">' +
+      '<div class="reveal">' +
+      kicker(8, "In the news") +
+      "</div>" +
+      '<p class="s-statement reveal">The story, <em>as others told it.</em></p>' +
+      '<div class="s-press">' +
+      items
+        .map(function (f) {
+          return link(
+            f.url,
+            '<span class="s-press-img"><img src="' +
+              esc(f.image) +
+              '" alt="" loading="lazy" style="object-position:' +
+              esc(f.imagePosition || "center 25%") +
+              '" /></span>' +
+              '<span class="s-press-body">' +
+              '<span class="s-press-meta">' +
+              esc(f.outlet) +
+              " · " +
+              esc(f.date) +
+              "</span>" +
+              '<span class="s-press-title">' +
+              esc(f.title) +
+              "</span>" +
+              '<span class="s-press-sum">' +
+              esc(f.summary) +
+              "</span>" +
+              '<span class="s-press-go">Read article <span aria-hidden="true">↗</span></span>' +
+              "</span>",
+            "s-press-card reveal"
+          );
+        })
+        .join("") +
       "</div>" +
       "</div>";
   }
@@ -983,6 +1049,7 @@
   renderWork();
   renderHonors();
   renderBeyond();
+  renderFeatured();
   renderContact();
   renderFooter();
   initReveal();
