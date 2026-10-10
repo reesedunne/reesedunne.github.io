@@ -274,6 +274,8 @@ window.SITE = {
      figures:   add { src, alt, captionTitle, caption }. In captions, **text** is bold
                 and χ_para / χ_dia become subscripts. "Figure N:" is added automatically.
      links:     extra links, e.g. { label: "Poster", url: "files/poster.pdf" }
+     thumbnail: optional small figure shown under the project on the homepage timeline
+     timelineDescription: optional shorter description for the homepage timeline (else description is used)
      manuscriptStatus: optional note under Publications, e.g. "Manuscript in preparation"
      figureCredit: optional { text, url } shown under the figures (for published figures)
      datasetLabel: optional heading for the cohort section (default "Study cohort"), e.g. "Samples"
@@ -460,6 +462,7 @@ window.SITE = {
     },
     {
       id: "meat-mechanics",
+      thumbnail: "images/projects/food-testing/thumb-web.jpg", // small figure on the homepage timeline
       group: "doctoral",
       title: "Mechanical Characterization of Plant-Based and Animal-Based Meat",
       role: "Doctoral Researcher",
@@ -468,6 +471,7 @@ window.SITE = {
       dates: "Sept. 2023 – July 2025",
       description:
         "Combined rheology, mechanical testing, and constitutive neural networks to compare plant-based and animal meats and establish quantitative targets for improving plant-based meat texture.",
+      timelineDescription: "Combined rheology, mechanical testing, and constitutive neural networks to compare plant-based and animal meats.",
       stats: [
         { value: "8", label: "meat products" },
         { value: "10", label: "quantified mechanical properties" },
@@ -534,6 +538,7 @@ window.SITE = {
     },
     {
       id: "magnesium-implants",
+      thumbnail: "images/projects/fea-magnesium-degredation/thumb-web.jpg", // small figure on the homepage timeline
       group: "prior",
       title: "Computational Modeling of Biodegradable Magnesium Implants",
       role: "Undergraduate Researcher",
@@ -596,6 +601,7 @@ window.SITE = {
     },
     {
       id: "muscle-dti",
+      thumbnail: "images/projects/DTI-quadriceps/thumb-web.jpg", // small figure on the homepage timeline
       group: "prior",
       title: "Diffusion MRI of Exercise-Related Skeletal Muscle Adaptation",
       role: "Research Intern, Stanford RSL REU Program",
@@ -658,6 +664,7 @@ window.SITE = {
     },
     {
       id: "photoacoustic",
+      thumbnail: "images/projects/photoacoustic-imaging/thumb-web.jpg", // small figure on the homepage timeline
       group: "prior",
       title: "Transcranial Photoacoustic Image Simulation",
       role: "Research Intern",
@@ -728,6 +735,7 @@ window.SITE = {
      url:     publisher page (used if there is no DOI)
      pdf:     optional, e.g. "files/paper.pdf" (check the publisher allows posting)
      project: id of the related research project above
+     cover:   optional image of the paper's first page (shown on hover on the homepage)
      --------------------------------------------------------------- */
   publications: [
     {
@@ -737,6 +745,7 @@ window.SITE = {
       year: 2025,
       role: "First author",
       doi: "10.1016/j.foodres.2025.115876",
+      cover: "images/publications/food-res-int-2025-cover.jpg", // first page, shown on the homepage on hover
       url: null,
       pdf: null,
       project: "meat-mechanics",
@@ -749,6 +758,7 @@ window.SITE = {
       year: 2024,
       role: "First author",
       doi: "10.1002/jbm.b.35519",
+      cover: "images/publications/jbmr-b-2024-cover.jpg", // first page, shown on the homepage on hover
       url: null,
       pdf: null,
       project: "magnesium-implants",
@@ -760,6 +770,7 @@ window.SITE = {
       year: 2024,
       role: "Co-author",
       doi: "10.1038/s41538-024-00330-6",
+      cover: "images/publications/npj-sci-food-2024-cover.jpg", // first page, shown on the homepage on hover
       url: null,
       pdf: null,
       project: "meat-mechanics",
@@ -772,6 +783,7 @@ window.SITE = {
       year: 2021,
       role: "Second author",
       doi: "10.1117/1.JBO.26.7.076006",
+      cover: "images/publications/jbo-2021-cover.jpg", // first page, shown on the homepage on hover
       url: null,
       pdf: null,
       project: "photoacoustic",
@@ -785,6 +797,7 @@ window.SITE = {
       role: "Second author",
       type: "Conference proceeding",
       doi: "10.1117/12.2579076",
+      cover: "images/publications/spie-2021-cover.jpg", // first page, shown on the homepage on hover
       url: null,
       pdf: null,
       project: "photoacoustic",
