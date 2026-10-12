@@ -227,8 +227,8 @@ em {
 .s-kicker {
   display: flex;
   align-items: center;
-  gap: 0.9rem;
-  font-size: 0.78rem;
+  gap: 1rem;
+  font-size: 0.95rem;
   font-weight: 500;
   letter-spacing: 0.16em;
   text-transform: uppercase;
@@ -240,7 +240,7 @@ em {
 }
 
 .s-kicker-line {
-  width: 2.5rem;
+  width: 3rem;
   height: 1px;
   background: var(--rule-strong);
 }
@@ -265,17 +265,16 @@ em {
   gap: 0.4rem;
 }
 
-.s-hero-copy .s-btn {
-  padding: 0.72em 1em;
-  font-size: clamp(0.66rem, 0.2rem + 0.9vw, 0.84rem);
-  white-space: nowrap;
+/* Hero buttons scale with the text column so all six fit on one line;
+   on narrow screens they wrap rather than shrinking too small */
+.s-hero-copy {
+  container-type: inline-size;
 }
 
-/* Keep the five hero buttons on one line whenever the hero is two columns */
-@media (min-width: 840px) {
-  .s-hero-copy .s-actions {
-    flex-wrap: nowrap;
-  }
+.s-hero-copy .s-btn {
+  padding: 0.72em 0.95em;
+  font-size: clamp(0.64rem, 1.98cqi, 0.84rem);
+  white-space: nowrap;
 }
 
 .s-actions-center {
@@ -314,6 +313,12 @@ em {
   background: transparent;
   color: var(--copper-2);
   border-color: var(--copper-2);
+}
+
+/* secondary call to action: outlined in copper */
+.s-btn-accent {
+  border-color: rgba(240, 185, 143, 0.55);
+  color: var(--copper-2);
 }
 
 .s-btn-small {
@@ -366,6 +371,17 @@ em {
 
 .s-nav a:hover {
   color: var(--ink);
+}
+
+.s-menu-btn {
+  display: none;
+  padding: 0.5rem 0.95rem;
+  border: 1px solid var(--rule-strong);
+  border-radius: 999px;
+  background: transparent;
+  color: var(--ink);
+  font: 500 0.85rem/1 var(--font-sans);
+  cursor: pointer;
 }
 
 /* ---------------------------------------------------------------------
@@ -552,7 +568,7 @@ em {
    Chapters
    --------------------------------------------------------------------- */
 .s-chapter {
-  padding: clamp(5rem, 11vw, 9rem) 0;
+  padding: clamp(3.5rem, 7vw, 6rem) 0;
   border-top: 1px solid var(--rule);
 }
 
@@ -723,6 +739,19 @@ em {
   margin: 0.4rem 0 0;
 }
 
+.s-studyintro--raised {
+  margin-top: 1.5rem;
+  align-items: start;
+}
+
+.s-studyintro--raised .s-question {
+  margin-top: 0;
+}
+
+.s-studyintro--raised .s-movies {
+  margin-top: 0.35rem;
+}
+
 @media (max-width: 900px) {
   .s-studyintro {
     grid-template-columns: 1fr;
@@ -823,6 +852,10 @@ em {
   gap: 0.7rem 1.2rem;
 }
 
+.s-studycard dl .is-wide {
+  grid-column: 1 / -1;
+}
+
 .s-studycard dt {
   font-size: 0.66rem;
   letter-spacing: 0.12em;
@@ -852,6 +885,209 @@ em {
 
 .s-studycard:hover .s-studycard-go span {
   transform: translateX(4px);
+}
+
+/* Chapter II: grid of MRI maps */
+.s-maps {
+  margin: 0.4rem 0 0;
+}
+
+.s-maps-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.5rem;
+}
+
+.s-maps-cell {
+  position: relative;
+  aspect-ratio: 16 / 10;
+  border-radius: 0.55rem;
+  overflow: hidden;
+  background: #000;
+}
+
+.s-maps-cell img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.s-maps-cell span {
+  position: absolute;
+  left: 0.5rem;
+  top: 0.45rem;
+  padding: 0.1rem 0.45rem;
+  border-radius: 0.3rem;
+  background: rgba(14, 15, 19, 0.75);
+  font-size: 0.72rem;
+  font-weight: 500;
+  color: var(--ink);
+}
+
+.s-maps figcaption,
+.s-cohort figcaption {
+  margin-top: 0.8rem;
+  font-size: 0.8rem;
+  line-height: 1.5;
+  color: var(--ink-3);
+}
+
+.s-maps-legend {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 0.35rem;
+  color: var(--ink-2);
+}
+
+.s-maps-legend i {
+  display: inline-block;
+  width: 0.6rem;
+  height: 0.6rem;
+  margin-right: 0.4rem;
+  border-radius: 2px;
+  vertical-align: 0;
+}
+
+/* Chapter II: one slice movie per study */
+.s-movies {
+  display: grid;
+  gap: 0.9rem;
+  margin: 0.4rem 0 0;
+}
+
+.s-movies-cell {
+  position: relative;
+  aspect-ratio: 16 / 10;
+  border-radius: 0.7rem;
+  overflow: hidden;
+  background: var(--bg);
+}
+
+.s-movies-cell video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.s-movies-cell span {
+  position: absolute;
+  left: 0.6rem;
+  top: 0.55rem;
+  padding: 0.18rem 0.55rem;
+  border-radius: 0.35rem;
+  background: rgba(14, 15, 19, 0.78);
+  font-size: 0.68rem;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--copper-2);
+}
+
+/* Chapter III: athlete groups + segmented brain */
+.s-cohort {
+  margin: 0;
+  align-self: start;
+  display: grid;
+  gap: 0.75rem;
+}
+
+.s-cohort figcaption {
+  margin-top: 0.1rem;
+  text-align: center;
+}
+
+/* study cards in a row share one height; a card next to a graphic keeps its natural height */
+.s-studycards--side > .s-studycard {
+  align-self: start;
+}
+
+.s-cohort-row {
+  display: grid;
+  grid-template-columns: 2.2rem auto 6.2rem minmax(0, 1fr);
+  gap: 0.9rem 1rem;
+  align-items: center;
+  padding: 0.75rem 1.1rem;
+  border: 1px solid var(--rule);
+  border-radius: 0.9rem;
+  background: linear-gradient(90deg, color-mix(in srgb, var(--c) 10%, transparent), transparent 60%), var(--bg-2);
+}
+
+.s-cohort-icon {
+  display: block;
+  aspect-ratio: 1;
+  background: var(--c);
+  -webkit-mask-size: contain;
+  mask-size: contain;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-position: center;
+  mask-position: center;
+}
+
+/* stick figures: one per three athletes, evenly spaced */
+/* stick figures: one SVG per row, same scale in both rows */
+.s-cohort-people {
+  display: block;
+  width: 100%;
+  max-width: 21rem;
+  height: 2.2rem;
+  color: var(--c);
+  opacity: 0.9;
+}
+
+.s-cohort-n {
+  font-family: var(--font-display);
+  font-size: 2.5rem;
+  line-height: 1;
+  color: var(--c);
+}
+
+.s-cohort-label {
+  font-size: 0.95rem;
+  font-weight: 500;
+  line-height: 1.15;
+  color: var(--ink);
+}
+
+.s-cohort-label small {
+  display: block;
+  margin-top: 0.2rem;
+  font-size: 0.66rem;
+  font-weight: 400;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+}
+
+.s-cohort-brains {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.75rem;
+  margin-top: 0.6rem;
+}
+
+.s-cohort-brain {
+  text-align: center;
+}
+
+.s-cohort-brain img {
+  width: 100%;
+  filter: drop-shadow(0 14px 18px rgba(0, 0, 0, 0.75)) drop-shadow(0 0 1px rgba(255, 255, 255, 0.15));
+  transition: transform 0.4s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+
+.s-cohort-brain:hover img {
+  transform: translateY(-4px) scale(1.03);
+}
+
+.s-cohort-brain span {
+  display: block;
+  margin-top: 0.6rem;
+  font-size: 0.72rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink-2);
 }
 
 /* Optional figure next to a study card (set "figure" on the chapter in home-story.js) */
@@ -1052,6 +1288,18 @@ em {
   transition: border-color 0.25s ease, transform 0.25s ease, box-shadow 0.25s ease;
 }
 
+.s-tl-thumb video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: brightness(0.88) saturate(0.9);
+  transition: filter 0.3s ease;
+}
+
+.s-tl-card:hover .s-tl-thumb video {
+  filter: none;
+}
+
 .s-tl-thumb img {
   width: 100%;
   height: 100%;
@@ -1059,6 +1307,11 @@ em {
   object-fit: cover;
   filter: brightness(0.88) saturate(0.9);
   transition: filter 0.3s ease;
+}
+
+.s-tl-thumb--frameless {
+  border-color: transparent;
+  background: var(--bg);
 }
 
 .s-tl-card:hover .s-tl-thumb {
@@ -1341,6 +1594,24 @@ em {
   opacity: 0;
 }
 
+/* city tags appear only for the hovered presentation */
+.g-tag {
+  opacity: 0;
+  transition: opacity 0.25s ease;
+}
+
+.g-city.is-active .g-tag {
+  opacity: 1;
+}
+
+.g-city.is-active .g-tag rect {
+  stroke: var(--copper);
+}
+
+.g-city.is-active .g-tag text {
+  fill: var(--copper-2);
+}
+
 .g-city.is-active .g-dot {
   fill: var(--copper-2);
 }
@@ -1364,6 +1635,22 @@ em {
 }
 
 .g-home {
+  fill: var(--ink);
+}
+
+.g-home-label rect,
+.g-tag rect {
+  fill: rgba(14, 15, 19, 0.82);
+  stroke: rgba(236, 231, 223, 0.25);
+  stroke-width: 0.6;
+}
+
+.g-home-label text,
+.g-tag text {
+  font-family: var(--font-sans);
+  font-size: 8px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
   fill: var(--ink);
 }
 
@@ -1524,47 +1811,78 @@ em {
 /* Remaining honors in a dropdown */
 .s-honors-more {
   margin-top: 1.25rem;
-  border: 1px solid var(--rule);
+  border: 1px solid rgba(240, 185, 143, 0.45);
   border-radius: 1rem;
+  background: linear-gradient(90deg, rgba(240, 185, 143, 0.08), transparent 70%), var(--bg-2);
+  transition: border-color 0.2s ease;
+}
+
+.s-honors-more:hover,
+.s-honors-more[open] {
+  border-color: var(--copper);
 }
 
 .s-honors-more summary {
   display: flex;
   align-items: center;
   gap: 0.75rem;
-  padding: 1.1rem 1.6rem;
+  padding: 1.25rem 1.6rem;
   cursor: pointer;
   list-style: none;
-  font-size: 0.78rem;
-  font-weight: 500;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--ink-2);
   border-radius: 1rem;
-  transition: background 0.2s ease, color 0.2s ease;
 }
 
 .s-honors-more summary::-webkit-details-marker {
   display: none;
 }
 
-.s-honors-more summary:hover {
-  background: var(--bg-3);
+.s-honors-more-title {
+  font-family: var(--font-display);
+  font-size: 1.45rem;
+  line-height: 1.1;
   color: var(--ink);
 }
 
 .s-honors-count {
-  padding: 0.1rem 0.5rem;
+  padding: 0.12rem 0.55rem;
   border-radius: 999px;
-  background: var(--bg-3);
+  background: rgba(240, 185, 143, 0.15);
+  font-size: 0.8rem;
+  font-weight: 600;
   color: var(--copper-2);
-  letter-spacing: 0;
+}
+
+.s-honors-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin-left: auto;
+  padding: 0.45rem 0.9rem;
+  border: 1px solid rgba(240, 185, 143, 0.5);
+  border-radius: 999px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--copper-2);
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+.s-honors-more summary:hover .s-honors-toggle {
+  background: var(--copper-2);
+  color: var(--bg);
+}
+
+.s-honors-hide,
+.s-honors-more[open] .s-honors-show {
+  display: none;
+}
+
+.s-honors-more[open] .s-honors-hide {
+  display: inline;
 }
 
 .s-honors-chev {
-  margin-left: auto;
-  width: 0.55rem;
-  height: 0.55rem;
+  width: 0.5rem;
+  height: 0.5rem;
   border-right: 1.5px solid currentColor;
   border-bottom: 1.5px solid currentColor;
   transform: translateY(-25%) rotate(45deg);
@@ -1794,7 +2112,7 @@ em {
    --------------------------------------------------------------------- */
 .s-contact {
   position: relative;
-  padding: clamp(6rem, 13vw, 11rem) 0;
+  padding: clamp(4.5rem, 9vw, 7.5rem) 0;
   border-top: 1px solid var(--rule);
   text-align: center;
   overflow: hidden;
@@ -1885,8 +2203,39 @@ em {
    Responsive
    --------------------------------------------------------------------- */
 @media (max-width: 1000px) {
+  .s-header-inner {
+    gap: 0.6rem;
+  }
+  .s-menu-btn {
+    display: inline-block;
+  }
   .s-nav {
     display: none;
+  }
+  .s-header.is-open {
+    background: var(--bg);
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    border-bottom-color: var(--rule);
+  }
+  .s-header.is-open .s-nav {
+    display: grid;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    gap: 0;
+    padding: 0.5rem var(--gutter) 1.25rem;
+    background: var(--bg);
+    box-shadow: 0 30px 40px -20px rgba(0, 0, 0, 0.8);
+    border-bottom: 1px solid var(--rule);
+  }
+  .s-header.is-open .s-nav a {
+    display: block;
+    padding: 0.8rem 0;
+    border-bottom: 1px solid var(--rule);
+    font-size: 1.05rem;
+    color: var(--ink);
   }
   .s-timeline {
     grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -1946,5 +2295,35 @@ em {
   }
   .s-scroll-cue {
     display: none;
+  }
+}
+
+/* Phones: chapter labels stay on one line, hero buttons stay readable, honors bar stays tidy */
+@media (max-width: 600px) {
+  .s-kicker {
+    gap: 0.6rem;
+    font-size: 0.78rem;
+    letter-spacing: 0.12em;
+    white-space: nowrap;
+  }
+  .s-kicker-line {
+    width: 1.25rem;
+  }
+  .s-hero-copy .s-btn {
+    font-size: 0.85rem;
+    padding: 0.65em 0.95em;
+  }
+  .s-honors-more summary {
+    padding: 1rem 1.1rem;
+  }
+  .s-honors-more-title {
+    font-size: 1.15rem;
+  }
+  .s-honors-show,
+  .s-honors-hide {
+    display: none !important;
+  }
+  .s-honors-toggle {
+    padding: 0.5rem 0.6rem;
   }
 }

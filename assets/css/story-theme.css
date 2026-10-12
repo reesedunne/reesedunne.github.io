@@ -49,3 +49,126 @@
     --accent: #000;
   }
 }
+
+/* ---------------------------------------------------------------------
+   CV page: dark, with stronger contrast between text levels
+   --------------------------------------------------------------------- */
+body[data-page="cv"] {
+  --text: #f4efe7;
+  --text-2: #9a948a;
+  --text-3: #79746c;
+}
+
+body[data-page="cv"] .cv-entry-title {
+  color: #fffaf2;
+  font-weight: 600;
+}
+
+body[data-page="cv"] .cv-entry-sub {
+  color: var(--text-2);
+}
+
+body[data-page="cv"] .cv-entry-desc,
+body[data-page="cv"] .cv-list,
+body[data-page="cv"] .cv-pubs {
+  color: #cfc9bf;
+}
+
+body[data-page="cv"] .cv-list strong,
+body[data-page="cv"] .cv-pubs strong {
+  color: #fffaf2;
+}
+
+body[data-page="cv"] .cv-entry-date {
+  color: var(--copper-cv, #d9915f);
+}
+
+
+body[data-page="cv"] .cv-doi {
+  color: var(--accent);
+  text-decoration-color: rgba(240, 185, 143, 0.4);
+  word-break: break-all;
+}
+
+body[data-page="cv"] .cv-doi:hover {
+  text-decoration-color: currentColor;
+}
+
+@media print {
+  body[data-page="cv"] .cv-subhead {
+    color: #000;
+  }
+  body[data-page="cv"] .cv-doi {
+    color: #000;
+    text-decoration: none;
+  }
+}
+
+/* CV subheadings (Graduate fellowships, Leadership, ...): same size and font, in copper so they stand out */
+body[data-page="cv"] .cv-subhead {
+  color: #f0b98f;
+}
+
+/* ---------------------------------------------------------------------
+   Print / Save as PDF: everything dark on white (this block must stay last)
+   --------------------------------------------------------------------- */
+@media print {
+  body,
+  body[data-page="cv"] {
+    --bg: #fff;
+    --surface: #fff;
+    --text: #000;
+    --text-2: #333;
+    --text-3: #444;
+    --rule: #ccc;
+    --rule-strong: #999;
+    --accent: #000;
+    background: #fff !important;
+    color: #000 !important;
+  }
+
+  body[data-page="cv"] .cv-entry-title,
+  body[data-page="cv"] .cv-list strong,
+  body[data-page="cv"] .cv-pubs strong,
+  body[data-page="cv"] .cv-name,
+  body[data-page="cv"] .cv-section h2,
+  body[data-page="cv"] .cv-subhead {
+    color: #000 !important;
+  }
+
+  body[data-page="cv"] .cv-entry-desc,
+  body[data-page="cv"] .cv-list,
+  body[data-page="cv"] .cv-pubs,
+  body[data-page="cv"] .cv-position,
+  body[data-page="cv"] .cv-contact,
+  body[data-page="cv"] .cv-contact a,
+  body[data-page="cv"] .cv-doi {
+    color: #111 !important;
+  }
+
+  body[data-page="cv"] .cv-entry-sub,
+  body[data-page="cv"] .cv-entry-date {
+    color: #333 !important;
+  }
+
+  body[data-page="cv"] .cv-section h2 {
+    border-bottom-color: #999 !important;
+  }
+
+  :root,
+  html,
+  body[data-page="cv"] {
+    color-scheme: light !important;
+  }
+
+  html {
+    background: #fff !important;
+  }
+
+  /* keep headings with the entries that follow them */
+  body[data-page="cv"] .cv-section h2,
+  body[data-page="cv"] .cv-subhead {
+    break-after: avoid;
+    page-break-after: avoid;
+  }
+}

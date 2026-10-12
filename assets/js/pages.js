@@ -13,9 +13,10 @@
   var NAV = [
     ["story", "Story"],
     ["research", "Research"],
-    ["publications", "Work"],
+    ["publications", "Publications"],
     ["honors", "Recognition"],
     ["leadership", "Beyond the lab"],
+    ["featured", "Press"],
     ["cv.html", "CV"],
   ];
 
@@ -760,8 +761,8 @@
       .join("");
 
     var researchGroups = [
-      { key: "doctoral", label: "Doctoral Research" },
-      { key: "prior", label: "Prior Research" },
+      { key: "doctoral", label: "Graduate Research" },
+      { key: "prior", label: "Undergraduate Research" },
     ];
     var research = researchGroups
       .map(function (g) {
@@ -794,7 +795,13 @@
           var authors = UI.formatAuthors(String(x.authors).replace(/\.?\s*$/, "."));
           return (
             "<li>" + authors + " " + esc(x.title) + ". <em>" + esc(x.venue) + "</em>, " + esc(x.year) + "." +
-            (x.doi ? " doi:" + esc(x.doi) : "") +
+            (x.doi
+              ? ' <a class="cv-doi" href="https://doi.org/' +
+                esc(x.doi) +
+                '" target="_blank" rel="noopener noreferrer">doi:' +
+                esc(x.doi) +
+                '<span class="visually-hidden"> (opens in a new tab)</span></a>'
+              : "") +
             "</li>"
           );
         })

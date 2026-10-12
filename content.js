@@ -275,6 +275,11 @@ window.SITE = {
                 and χ_para / χ_dia become subscripts. "Figure N:" is added automatically.
      links:     extra links, e.g. { label: "Poster", url: "files/poster.pdf" }
      thumbnail: optional small figure shown under the project on the homepage timeline
+     video:     optional short muted clip for the timeline (e.g. "images/projects/x/clip.mp4");
+                plays while on screen, with thumbnail as its still frame
+     videoSpeed: optional playback speed for that clip, e.g. 1.5
+     videoPoster: optional still frame for the clip (else thumbnail is used)
+     thumbnailFrameless: true hides the timeline figure's outline until it is hovered
      timelineDescription: optional shorter description for the homepage timeline (else description is used)
      manuscriptStatus: optional note under Publications, e.g. "Manuscript in preparation"
      figureCredit: optional { text, url } shown under the figures (for published figures)
@@ -284,6 +289,8 @@ window.SITE = {
   projects: [
     {
       id: "head-impacts",
+      thumbnail: "images/projects/head-impacts/thumb-web.jpg", // 8 MRI contrasts (manuscript Figure 3)
+      thumbnailFrameless: true,
       manuscriptStatus: "Manuscript in preparation",
       group: "doctoral",
       title: "Longitudinal MRI of Repetitive Head Impacts in Collegiate Athletes",
@@ -297,12 +304,12 @@ window.SITE = {
         { value: "74", label: "collegiate athletes" },
         { value: "262", label: "MRI examinations" },
         { value: "Up to 4 yrs", label: "of longitudinal follow-up" },
-        { value: "4 + 8", label: "susceptibility + diffusion MRI metrics" },
+        { value: "12", label: "MRI metrics" },
       ],
       highlights: ["Linear mixed-effects modeling", "Oral presentation at ISMRM 2026"],
       contributions: [
         "Lead a longitudinal neuroimaging analysis of 74 collegiate athletes across 262 MRI examinations, using source-separated QSM and diffusion MRI to study brain microstructural changes associated with repetitive head impacts over 4 years",
-        "Develop linear mixed-effects models across 4 susceptibility and 8 diffusion MRI metrics to compare longitudinal trajectories between football and volleyball athletes",
+        "Develop linear mixed-effects models across 12 MRI metrics to compare longitudinal trajectories between football and volleyball athletes",
         "Integrate multimodal MRI measurements across a hierarchical FreeSurfer framework, combining QSM, R2*, source-separated susceptibility, and diffusion-derived measures with image, segmentation, and registration quality control",
         "Conduct football-specific exposure and concussion analyses relating imaging trajectories to cognitive performance, position-based impact risk, years of tackle football, and concussion history, including acute and delayed post-concussion MRI changes",
       ],
@@ -326,6 +333,10 @@ window.SITE = {
     },
     {
       id: "alzheimers-7t",
+      thumbnail: "images/projects/alzheimers-7t/thumb-web.jpg", // still frame of the clip below
+      video: "images/projects/alzheimers-7t/clip-web.mp4", // 7T coronal T2 slices with CA1 and subiculum (ASHS)
+      videoPoster: "images/projects/alzheimers-7t/clip-poster.jpg",
+      thumbnailFrameless: true, // no outline until hovered
       manuscriptStatus: "Manuscript in preparation",
       group: "doctoral",
       title: "7T MRI of Hippocampal Subfield Iron in Alzheimer’s Disease",
@@ -338,19 +349,21 @@ window.SITE = {
       stats: [
         { value: "20", label: "participants (healthy, MCI, AD)" },
         { value: "3", label: "hippocampal regions of interest (subiculum, CA1, subiculum-CA1)" },
-        { value: "4", label: "iron- and myelin-sensitive MRI metrics (R2*, QSM, χ_para, χ_dia)" },
+        { value: "4", label: "iron- and myelin-sensitive MRI metrics" },
       ],
       highlights: ["Python, MATLAB, and Bash pipelines", "Hippocampal R2* analysis"],
       contributions: [
         "Developed an end-to-end 7T MRI processing pipeline in Python, MATLAB, and Bash to quantify hippocampal iron, generating R2* and QSM maps from multi-echo gradient-echo data and source-separated susceptibility maps (χ_para, χ_dia)",
         "Segmented the subiculum and CA1 hippocampal subfields on ultra-high resolution T2-weighted images using automated segmentation, reviewing every subject slice by slice and manually correcting segmentation errors, and registered susceptibility maps to anatomical space",
         "Led quality control of all susceptibility maps and segmentation volumes, blinded to diagnosis, with independent review by an experienced neuroradiologist",
-        "Extracted subfield-level R2*, QSM, χ_para, and χ_dia measures and applied nonparametric statistics (Jonckheere-Terpstra trend tests, Spearman correlations) to test ordered differences across healthy, MCI, and AD participants and associations with memory composite scores",
+        "Extracted subfield-level iron- and myelin-sensitive measures and applied nonparametric statistics to test ordered differences across healthy, MCI, and AD participants and associations with memory composite scores",
       ],
-      keyFindings: [
-        "Significant increases in hippocampal R2* with greater disease severity, consistent with increased iron",
-        "Significant negative association between memory scores and χ_para in CA1 across diagnoses",
-      ],
+      // Hidden for now, pending PI approval. To show again, replace [] with the commented list.
+      keyFindings: [],
+      // keyFindings: [
+      //   "Significant increases in hippocampal R2* with greater disease severity, consistent with increased iron",
+      //   "Significant negative association between memory scores and χ_para in CA1 across diagnoses",
+      // ],
       methods: [
         "7T MRI",
         "QSM",
@@ -368,8 +381,6 @@ window.SITE = {
         "NiftyReg",
         "MEDI",
         "SPURS phase unwrapping",
-        "Jonckheere-Terpstra test",
-        "Spearman correlation",
       ],
       tags: ["MRI", "Python", "MATLAB"],
       researchQuestion:
@@ -381,6 +392,10 @@ window.SITE = {
     },
     {
       id: "alzheimers-petmr",
+      thumbnail: "images/projects/alzheimers-petmr/thumb-web.jpg", // olfactory + medial temporal ROIs on T2
+      video: "images/projects/alzheimers-petmr/clip-web.mp4", // coronal T2 slices with the 4 study regions (PI040, ASHS + piriform/PAC)
+      videoPoster: "images/projects/alzheimers-petmr/clip-poster.jpg",
+      thumbnailFrameless: true, // no outline until hovered
       group: "doctoral",
       title: "Source-Separated QSM of Olfactory and Medial Temporal Regions in Alzheimer’s Disease",
       role: "Doctoral Researcher",
@@ -393,14 +408,14 @@ window.SITE = {
         { value: "66", label: "participants at 3T PET-MR" },
         { value: "5", label: "clinical / biomarker groups" },
         { value: "4", label: "memory- and olfactory-related brain regions" },
-        { value: "3", label: "susceptibility metrics (QSM, χ_para, χ_dia)" },
+        { value: "3", label: "susceptibility metrics" },
       ],
       highlights: ["Analysis of iron- and myelin-sensitive susceptibility abnormalities"],
       contributions: [
         "Applied my previously developed QSM and source-separation pipeline in Python, MATLAB, and Bash to generate QSM, χ_para, and χ_dia maps from 3T PET-MR multi-echo gradient-echo data across 66 participants",
         "Registered all susceptibility maps to high-resolution T2-weighted segmentation space and performed quality control of every registration",
         "Performed quality control of all QSM and source-separated susceptibility images, assessing motion artifacts and image quality",
-        "Extracted median QSM, χ_para, and χ_dia from the entorhinal-perirhinal cortices, piriform-PAC, amygdala, and whole hippocampus and applied nonparametric ordered-trend and unpaired tests across 5 clinical and amyloid-biomarker groups, including amyloid-positive vs. amyloid-negative healthy controls",
+        "Extracted median iron- and myelin-sensitive measures from the entorhinal-perirhinal cortices, piriform-PAC, amygdala, and whole hippocampus and applied nonparametric statistics to compare 5 clinical and amyloid-biomarker groups, including amyloid-positive vs. amyloid-negative healthy controls",
       ],
       keyFindings: [],
       methods: [
@@ -427,9 +442,10 @@ window.SITE = {
     },
     {
       id: "brain-tissue",
+      thumbnail: "images/projects/fresh-brain-testing/thumb-web.jpg", // rheometer setup, phone screen blurred (Brain_Testing_Session_1, slide 2)
       group: "doctoral",
       status: "Ongoing · data collection in progress",
-      title: "Mechanical Characterization of Fresh Human Brain Tissue",
+      title: "Mechanical Characterization of Human Brain Tissue",
       role: "Doctoral Researcher",
       advisor: "Dr. Ellen Kuhl",
       institution: "Department of Mechanical Engineering, Stanford University",
@@ -539,6 +555,9 @@ window.SITE = {
     {
       id: "magnesium-implants",
       thumbnail: "images/projects/fea-magnesium-degredation/thumb-web.jpg", // small figure on the homepage timeline
+      video: "images/projects/fea-magnesium-degredation/clip-web.mp4", // Pure Mg degradation (MSD Mid-Point Presentation, slide 10)
+      videoPoster: "images/projects/fea-magnesium-degredation/clip-poster.jpg",
+      thumbnailFrameless: true, // no outline around the timeline clip until hovered
       group: "prior",
       title: "Computational Modeling of Biodegradable Magnesium Implants",
       role: "Undergraduate Researcher",
@@ -601,7 +620,8 @@ window.SITE = {
     },
     {
       id: "muscle-dti",
-      thumbnail: "images/projects/DTI-quadriceps/thumb-web.jpg", // small figure on the homepage timeline
+      thumbnail: "images/projects/DTI-quadriceps/thumb-web.png", // small figure on the homepage timeline
+      thumbnailFrameless: true, // no outline around the timeline figure until hovered
       group: "prior",
       title: "Diffusion MRI of Exercise-Related Skeletal Muscle Adaptation",
       role: "Research Intern, Stanford RSL REU Program",
@@ -665,6 +685,8 @@ window.SITE = {
     {
       id: "photoacoustic",
       thumbnail: "images/projects/photoacoustic-imaging/thumb-web.jpg", // small figure on the homepage timeline
+      video: "images/projects/photoacoustic-imaging/clip-web.mp4", // from Graham, Dunne & Bell, JBO 2021 (CC BY 4.0)
+      videoSpeed: 2, // playback speed of the timeline clip (1 = normal)
       group: "prior",
       title: "Transcranial Photoacoustic Image Simulation",
       role: "Research Intern",
