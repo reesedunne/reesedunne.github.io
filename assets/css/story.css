@@ -2095,6 +2095,60 @@ em {
   color: var(--copper-2);
 }
 
+/* Feature video under the news cards */
+.s-feature {
+  max-width: 46rem;
+  margin: 4.5rem auto 0;
+  text-align: center;
+}
+
+.s-feature-label {
+  font-size: 0.78rem;
+  font-weight: 500;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--copper);
+}
+
+.s-feature-title {
+  margin-top: 0.6rem;
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: clamp(1.8rem, 3.4vw, 2.6rem);
+  line-height: 1.1;
+  color: var(--ink);
+}
+
+.s-feature-meta {
+  margin-top: 0.45rem;
+  font-size: 0.85rem;
+  color: var(--ink-3);
+}
+
+.s-feature-frame {
+  margin-top: 1.6rem;
+  border-radius: 1rem;
+  overflow: hidden;
+  border: 1px solid var(--rule-strong);
+  background: #000;
+  box-shadow: 0 40px 90px -40px var(--copper-glow);
+  aspect-ratio: 16 / 9;
+}
+
+.s-feature-frame video {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.s-feature-sum {
+  max-width: 38rem;
+  margin: 1.1rem auto 0;
+  font-size: 0.95rem;
+  color: var(--ink-2);
+}
+
 @media (max-width: 1000px) {
   .s-press {
     grid-template-columns: repeat(2, minmax(0, 1fr));

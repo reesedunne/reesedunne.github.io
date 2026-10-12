@@ -1266,7 +1266,38 @@
         })
         .join("") +
       "</div>" +
+      FeatureVideo(SITE.featuredVideo) +
       "</div>";
+  }
+
+  /* Full-length feature video, centered under the news cards. No autoplay; sound plays on click. */
+  function FeatureVideo(v) {
+    if (!v) return "";
+    return (
+      '<figure class="s-feature reveal">' +
+      '<figcaption class="s-feature-head">' +
+      '<p class="s-feature-label">' +
+      esc(v.label) +
+      "</p>" +
+      '<h3 class="s-feature-title">' +
+      esc(v.title) +
+      "</h3>" +
+      '<p class="s-feature-meta">' +
+      esc(v.outlet) +
+      " · " +
+      esc(v.date) +
+      "</p>" +
+      "</figcaption>" +
+      '<div class="s-feature-frame"><video src="' +
+      esc(v.src) +
+      '" poster="' +
+      esc(v.poster) +
+      '" controls playsinline preload="none"></video></div>' +
+      '<p class="s-feature-sum">' +
+      esc(v.summary) +
+      "</p>" +
+      "</figure>"
+    );
   }
 
   function renderContact() {

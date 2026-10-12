@@ -1012,6 +1012,17 @@ window.SITE = {
     },
   ],
 
+  // Video shown under the news articles on the homepage (plays only when clicked)
+  featuredVideo: {
+    src: "images/featured/my-time-hailstate-web.mp4",
+    poster: "images/featured/my-time-poster-race.jpg",
+    label: "Watch",
+    title: "My Time · Reese Dunne",
+    outlet: "HailState+ · Mississippi State Athletics",
+    date: "May 2023",
+    summary: "A graduation feature on balancing NCAA Division I track and field with engineering research, and the road to Stanford.",
+  },
+
   /* ---------------------------------------------------------------
      OTHER PRESENTATIONS: regional and university talks/posters.
      Shown on the printable CV only (homepage links to it). Newest first.
