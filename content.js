@@ -955,7 +955,8 @@ window.SITE = {
       date: "May 2023",
       summary: "Recognized among Mississippi State’s 2023 NSF Graduate Research Fellows.",
       url: "https://www.msstate.edu/newsroom/article/2023/05/msu-well-represented-2023-class-nsf-graduate-research-fellows",
-      image: "images/featured/alternate-headshot-web.jpg",
+      image: "images/featured/nsf-track-web.jpg",
+      imagePosition: "20% 15%",
     },
     {
       title: "MSU’s Dunne named Rhodes Scholarship Finalist",
@@ -979,7 +980,8 @@ window.SITE = {
       outlet: "Mississippi State University Newsroom",
       date: "July 2021",
       summary: "Announcement of Mississippi State’s 2021 Astronaut Scholars from the Bagley College of Engineering.",
-      image: "images/featured/alternate-headshot-web.jpg",
+      image: "images/featured/astronaut-headshot-web.jpg",
+      imagePosition: "center top",
       url: "https://www.msstate.edu/newsroom/article/2021/07/mississippis-newest-astronaut-scholars-hail-msus-bagley-college",
     },
     {
@@ -996,7 +998,8 @@ window.SITE = {
       outlet: "Mississippi State University Newsroom",
       date: "Apr. 2021",
       summary: "Selected as the 19th Mississippi State student to receive the Goldwater Scholarship.",
-      image: "images/headshot-web.jpg",
+      image: "images/featured/goldwater-headshot-web.jpg",
+      imagePosition: "center 20%",
       url: "https://www.msstate.edu/newsroom/article/2021/04/msus-dunne-selected-prestigious-goldwater-scholarship",
     },
     {
